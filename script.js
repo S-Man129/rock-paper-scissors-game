@@ -21,49 +21,54 @@ function getHumanChoice() {
   return userInput;
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
 function playRound(humanChoice, computerChoice) {
   console.log("Computer chose: " + computerChoice);
   console.log("You chose: " + humanChoice);
 
   if (humanChoice == computerChoice) {
     console.log("it is a tie");
-    console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
   } else if (humanChoice == "Rock") {
     if (computerChoice == "Scissors") {
       humanScore += 1;
-      console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
     } else {
       computerScore += 1;
-      console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
     }
   } else if (humanChoice == "Paper") {
     if (computerChoice == "Rock") {
       humanScore += 1;
-      console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
     } else {
       computerScore += 1;
-      console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
     }
   } else if (humanChoice == "Scissors") {
     if (computerChoice == "Paper") {
       humanScore += 1;
-      console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
     } else {
       computerScore += 1;
-      console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
     }
   } else {
     console.log("Invalid entries");
   }
+
+  console.log("Computer: " + computerScore, "\n" + "Human: " + humanScore);
 }
 
 function playGame() {
-  for (i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 5; i++) {
+    console.log(`------ Round ${i} ------`);
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
     playRound(humanSelection, computerSelection);
   }
+
+  if (humanScore > computerScore) {
+    console.log("You win!");
+  } else {
+    console.log("You loss to computer!");
+  }
+
+  console.log("Total Computer score  = " + computerScore);
+  console.log("Total Human score  = " + humanScore);
 }
 
 playGame();
